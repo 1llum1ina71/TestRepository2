@@ -1,0 +1,156 @@
+<style>
+	.outerContainer{
+		width: 90%;
+		height: 280px;
+		margin-right:5%;
+		margin-left:5%;
+		display:flex;
+		flex-direction: row;
+	}
+	.columnContainer{
+		width: 31%;
+		height: 90%;
+		margin-bottom: 10px;
+		margin-top: 10px%;
+		/*display: flex;*/
+		/*flex-direction: column;*/
+
+		padding: 10px;
+	}
+	.block{
+		width: 100%;
+		height: 33%; 
+		margin-bottom:10px;
+		background-color: gray;
+	}
+</style>
+
+<div id = "root"></div>
+<div id = "rootForButton"></div>
+<div id = "rootForm"></div>
+<div id = "containerBanner"></div>
+<div id = "containerArticles"></div>
+<div id = "containerForm"></div>
+<div id = "containerContent"></div>
+<div id = "footer"></div>
+
+<script src="https://unpkg.com/react@16.0.0-rc.3/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<script type = "text/babel">
+const outerElement = document.getElementById('root')
+const content1 = <div className = "block">1</div> 
+const column = <div className="columnContainer">{content1}{content1}{content1}</div>
+const columns = <div className = "outerContainer">{column}{column}{column}</div>
+ReactDOM.render(columns,outerElement)
+
+function Button(props){
+	return <button type = "submit">{props.label}</button>
+}
+const buttonRoot = document.getElementById('rootForButton')
+ReactDOM.render(<Button label = 'Save'/>, buttonRoot)
+
+
+function Button(props){
+	return <button type = "submit">{props.labels}{props.other}</button>
+}
+
+
+ReactDOM.render(<Button labels = 'This is a prop<br>' other = 'This is another one'/>, buttonRoot)
+
+const formContainer = document.getElementById('rootForm')
+const form = React.createElement('form',
+{className:'form1', id:'form1'},
+React.createElement('input',{name:'name',id:'name'}),
+React.createElement('input',{name:'message',id:'message'}),
+React.createElement('button',{type:'submit', label:'Submit'})
+)
+ReactDOM.render(form, formContainer)
+
+
+function makeBanner(props)
+{
+	return <div className = {props.className} id = {props.id}></div>
+}
+function Div(props)
+{
+}
+function makeContent(props)
+{
+}
+function P(props)
+{
+	return <p>{props.text}</p>
+}
+function makeFooter(props)
+{
+}
+
+// Create banner
+const bannerRoot = document.getElementById('containerBanner')
+
+const banner = React.createElement('div',{className:'banner',id:'banner'},
+React.createElement('img',{src:'./Pictures/mwi-logo-horizontal.png'})
+)
+ReactDOM.render(banner, bannerRoot)
+
+// Create articles
+const articleRoot = document.getElementById('containerArticles')
+const articles = React.createElement('div',{className:'outerContainer'},
+React.createElement('div',{className:'columnContainer'},React.createElement('div',{className:'block'}),React.createElement('p',{className:'text'},'Example text')),
+
+React.createElement('div',{className:'columnContainer'},React.createElement('div',{className:'block'}),React.createElement('p',{className:'text'},'Example text')),
+
+React.createElement('div',{className:'columnContainer'},React.createElement('div',{className:'block'}),React.createElement('p',{className:'text'},'Example text')),
+
+React.createElement('div',{className:'columnContainer'},React.createElement('div',{className:'block'}),React.createElement('p',{className:'text'},'Example text')),
+
+React.createElement('div',{className:'columnContainer'},React.createElement('div',{className:'block'}),React.createElement('p',{className:'text'},'Example text')),
+
+React.createElement('div',{className:'columnContainer'},React.createElement('div',{className:'block'}),React.createElement('p',{className:'text'},'Example text'))
+
+)
+
+ReactDOM.render(articles,articleRoot)
+const containerContent = document.getElementById('containerContent')
+//ReactDOM.render(<P text = "Example Text for p" />, containerContent)
+
+ 
+const column1 = ( 
+	<div className = "columnContainer">
+		<div className = "block"></div>
+		<p>text</p>
+	</div>
+)
+ 
+const element1 = (
+	<div className = "outerContainer">
+		{column1}
+		{column1}
+		{column1}
+	</div>
+
+) 
+ 
+ 
+ReactDOM.render(element1,containerContent)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

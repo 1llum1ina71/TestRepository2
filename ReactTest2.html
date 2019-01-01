@@ -1,0 +1,113 @@
+<html>
+	<head></head>
+	<style>
+		.banner{
+		width: 100%;
+		height: 200px;
+		}
+		.button{
+			width: 100px;
+			border-radius: 20px;
+			border: 1px solid white;
+			color: white;
+			font-size:14px;
+			background-color: black;
+		}
+		.columnContainer{
+			width: 80%;
+			margin-left: 10%;
+			margin-right: 10%;
+			display: flex;
+			flex-direction: row;
+		}
+		.column{
+			width: 30%;
+			margin-right: 2%;
+			display: flex;
+			flex-direction: column;
+			padding: 10px;
+			border: 1px solid black;
+		}
+		.emptyBar{
+			width:100%;
+			background-color: gray;
+			height: 150px;
+		}
+		.columnContent{
+			font-size: 14px;
+			margin-top:10px;
+			margin-bottom:10px;
+		}
+	</style>
+	<body>
+	<div id = "banner" class = "banner">
+	</div>
+	<div id = "columnContainer" class = "columnContainer">
+	</div>
+	</body>
+	<script src="https://unpkg.com/react@16.0.0-rc.3/umd/react.production.min.js"></script>
+	<script src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.production.min.js"></script>
+	<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+	<script type = "text/babel">
+	
+	// Create banner
+	class Banner extends React.Component
+	{
+		render()
+		{
+			return(
+				<img className = {this.props.className} src = {this.props.source} />
+			)
+		}
+	}
+	// Get root for banner and display
+	ReactDOM.render(<Banner className = "banner" source = "./Pictures/mwi-logo-horizontal.png"/>,
+	document.getElementById('banner'))
+	
+	class Button extends React.Component
+	{
+		clicks = 0
+		
+		handleClicks = () =>{
+			this.clicks += 1
+			renderColumns()
+		}
+		
+		render()
+		{
+			return(
+				<button className = {this.props.className} onClick = {this.handleClicks}>{this.clicks}</button>
+			)
+		}
+	}
+	
+	class Column extends React.Component
+	{
+		render()
+		{
+			return(
+				<div class = "column">
+					<div className = "emptyBar">
+					</div>
+					<div className = "columnContent">
+					Text Text Text Text Text Text Text Text
+					Text Text Text Text Text Text Text Text
+					Text Text Text Text Text Text Text Text
+					</div>
+					<Button className = "button" />
+					
+				</div>
+			)
+		}
+	}
+	
+	function renderColumns()
+	{
+		const columns = ( <div class = "columnContainer"><Column /><Column /><Column /></div>)
+		ReactDOM.render(columns, document.getElementById('columnContainer'))
+	}
+	
+	renderColumns()
+	</script>
+	
+</html>
